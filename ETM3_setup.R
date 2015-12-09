@@ -1,6 +1,6 @@
 #' EthioSIS Mehlich-3 nutrient and nutrient mass balance data setup
 #' note that the Mehlich-3 nutrient data need to be obtained from EthioSIS
-#' contact Tegbaru Bellete at: Tegbaru.Bellete@ata.gov.et 
+#' contact Tegbaru Bellete at: Tegbaru.Bellete@ata.gov.et
 #' M. Walsh, December 2015
 
 # install.packages(c("downloader","compositions","raster","rgdal"), dependencies=T)
