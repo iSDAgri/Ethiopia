@@ -21,7 +21,7 @@ glist <- list.files(pattern="tif", full.names=T)
 grids <- stack(glist)
 
 # Copy EthioSIS survey data into ./ETM3_data ... working directory
-unzip("ET_Mehlich3.zip", overwrite=T) ## these data need to be requested from EthioSIS
+unzip("ET_Mehlich3.zip", overwrite=T) ## this .zip file needs to be copied into your working directory
 prof <- read.table("Profiles.csv", header=T, sep=",") ## survey locations and Woreda names
 samp <- read.table("Samples.csv", header=T, sep=",") ## sample Mehlich-3 data
 etm3 <- merge(prof, samp, by="PID")
@@ -42,13 +42,13 @@ bpart <- t(matrix(c( 1, 1, 1, 1, 1,-1,
                      0, 0, 0, 1,-1, 0), ncol=6, nrow=5, byrow=T))
 CoDaDendrogram(X=acomp(cdata), signary=bpart) ## mass balance mobile graph  			
 idata <- as.data.frame(ilr(cdata, V=bpart))
-colnames(idata) <- c("V0","V3","V4","V5","V6")
+colnames(idata) <- c("V0","V3","V4","V5","V6") ## variable names align w AfSIS standard
 etnb <- cbind(etnb, idata)
 
 # Overlay with gridded covariates -----------------------------------------
 # Project survey coords to grid CRS
 etnb.proj <- as.data.frame(project(cbind(etnb$Lon, etnb$Lat), "+proj=laea +ellps=WGS84 +lon_0=20 +lat_0=5 +units=m +no_defs"))
-colnames(etnb.proj) <- c("x","y")
+colnames(etnb.proj) <- c("x","y") ## laea coordinates
 etnb <- cbind(etnb, etnb.proj)
 coordinates(etnb) <- ~x+y
 projection(etnb) <- projection(grids)
@@ -62,7 +62,7 @@ etm3 <- unique(na.omit(etm3)) ## includes only unique & complete records
 # Training/Test set partition ---------------------------------------------
 Woreda <- names(table(etm3$Woreda))
 set.seed(5321)
-train <- sample(Woreda, 0.8*length(Woreda))
+train <- sample(Woreda, 0.8*length(Woreda)) ## 80% sample of Woredas for model training
 etm3_cal <- etm3[ etm3$Woreda%in%train, ] ## calibration data
 etm3_val <- etm3[!etm3$Woreda%in%train, ] ## validation data
 
