@@ -20,7 +20,7 @@ unzip("ET_grids.zip", overwrite=T)
 glist <- list.files(pattern="tif", full.names=T)
 grids <- stack(glist)
 
-# Copy survey data into ./ETM3_data ... working directory
+# Copy EthioSIS survey data into ./ETM3_data ... working directory
 unzip("ET_Mehlich3.zip", overwrite=T) ## these data need to be requested from EthioSIS
 prof <- read.table("Profiles.csv", header=T, sep=",") ## survey locations and Woreda names
 samp <- read.table("Samples.csv", header=T, sep=",") ## sample Mehlich-3 data
