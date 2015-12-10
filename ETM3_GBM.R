@@ -24,7 +24,7 @@ V6 <- etm3_cal$V6
 GRIDSc <- etm3_cal[c(18:45)] ## gridded covariates for model calibration from 204 Woredas
 GRIDSv <- etm3_val[c(18:45)] ## same for 51 randomly selected validation Woredas
 
-# GLMNET models -----------------------------------------------------------
+# GBM models --------------------------------------------------------------
 set.seed(1385321)
 
 # Cross-validation setup
