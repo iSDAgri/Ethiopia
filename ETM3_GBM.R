@@ -3,7 +3,7 @@
 #' M. Walsh, December 2015
 
 # Required packages
-# install.packages(c("devtools","caret","randomForest")), dependencies=TRUE)
+# install.packages(c("devtools","caret","gbm")), dependencies=TRUE)
 require(devtools)
 require(caret)
 require(gbm)
