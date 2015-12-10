@@ -76,3 +76,9 @@ V3_pred <- predict(grids, V3.rr)
 V4_pred <- predict(grids, V4.rr)
 V5_pred <- predict(grids, V5.rr)
 V6_pred <- predict(grids, V6.rr)
+
+# Export Gtif's -----------------------------------------------------------
+rr.preds <- stack(V0_pred,V3_pred,V4_pred,V5_pred,V6_pred)
+names(rr.preds) <- c("V0_rr","V3_rr","V4_rr","V5_rr","V6_rr")
+writeRaster(rr.preds, filename="rr_pred.tif", datatype="FLT4S", options="INTERLEAVE=BAND", overwrite=T)
+
