@@ -39,15 +39,15 @@ V3.rf <- train(GRIDSc, V3, method = "rf", trControl = tc)
 print(V3.rf) 
 
 # V4 = ilr [K | Ca,Mg]
-V4.rf <- train(GRIDSc, V3, method = "rf", trControl = tc)
+V4.rf <- train(GRIDSc, V4, method = "rf", trControl = tc)
 print(V4.rf)
 
 # V5 = ilr [P | S]
-V5.rf <- train(GRIDSc, V3, method = "rf", trControl = tc)
+V5.rf <- train(GRIDSc, V5, method = "rf", trControl = tc)
 print(V5.rf)
 
 # V6 = ilr [Ca | Mg]
-V6.rf <- train(GRIDSc, V3, method = "rf", trControl = tc)
+V6.rf <- train(GRIDSc, V6, method = "rf", trControl = tc)
 print(V6.rf)
 
 # Test set predictions ----------------------------------------------------
