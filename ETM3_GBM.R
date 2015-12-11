@@ -106,13 +106,14 @@ test <- etm3_val[c("PID","V0","V3","V4","V5","V6")]
 eval <- cbind(test, pred)
 
 # Gridded predictions -----------------------------------------------------
-V0_pred <- predict(grids, V0.gbm)
-V3_pred <- predict(grids, V3.gbm)
-V4_pred <- predict(grids, V4.gbm)
-V5_pred <- predict(grids, V5.gbm)
-V6_pred <- predict(grids, V6.gbm)
+V0_gbm <- predict(grids, V0.gbm)
+V3_gbm <- predict(grids, V3.gbm)
+V4_gbm <- predict(grids, V4.gbm)
+V5_gbm <- predict(grids, V5.gbm)
+V6_gbm <- predict(grids, V6.gbm)
+gbm_pred <- stack(V0_gbm,V3_gbm,V4_gbm,V5_gbm,V6_gbm)
+names(gbm_pred) <- c("V0_gbm","V3_gbm","V4_gbm","V5_gbm","V6_gbm")
+plot(gbm_pred)
 
 # Export Gtif's -----------------------------------------------------------
-gbm_pred <- stack(V0_pred,V3_pred,V4_pred,V5_pred,V6_pred)
-names(gbm_pred) <- c("V0_gbm","V3_gbm","V4_gbm","V5_gbm","V6_gbm")
-writeRaster(gbm.pred, filename="gbm_pred.tif", datatype="FLT4S", options="INTERLEAVE=BAND", overwrite=T)
+writeRaster(gbm_pred, filename="gbm_pred.tif", datatype="FLT4S", options="INTERLEAVE=BAND", overwrite=T)
