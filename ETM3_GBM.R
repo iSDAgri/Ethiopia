@@ -103,7 +103,7 @@ V5_gbm <- predict(V5.gbm, GRIDSv)
 V6_gbm <- predict(V6.gbm, GRIDSv)
 pred <- cbind.data.frame(V0_gbm,V3_gbm,V4_gbm,V5_gbm,V6_gbm)
 test <- etm3_val[c("PID","V0","V3","V4","V5","V6")]
-eval <- cbind(test, pred)
+gbm_eval <- cbind(test, pred)
 
 # Gridded predictions -----------------------------------------------------
 V0_gbm <- predict(grids, V0.gbm)
