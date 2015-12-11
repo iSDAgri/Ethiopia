@@ -3,9 +3,10 @@
 #' M. Walsh, December 2015
 
 # Required packages
-# install.packages(c("devtools","caret","gbm")), dependencies=TRUE)
+# install.packages(c("devtools","caret","plyr",gbm")), dependencies=TRUE)
 require(devtools)
 require(caret)
+require(plyr)
 require(gbm)
 require(raster)
 
