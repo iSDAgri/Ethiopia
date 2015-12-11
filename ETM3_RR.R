@@ -3,7 +3,7 @@
 #' M. Walsh, December 2015
 
 # Required packages
-# install.packages(c("devtools","caret","randomForest")), dependencies=TRUE)
+# install.packages(c("devtools","caret","glmnet","raster")), dependencies=TRUE)
 require(devtools)
 require(caret)
 require(glmnet)
@@ -68,17 +68,17 @@ V5_rr <- predict(V5.rr, GRIDSv)
 V6_rr <- predict(V6.rr, GRIDSv)
 pred <- cbind.data.frame(V0_rr,V3_rr,V4_rr,V5_rr,V6_rr)
 test <- etm3_val[c("PID","V0","V3","V4","V5","V6")]
-eval <- cbind(test, pred)
+rr_eval <- cbind(test, pred)
 
 # Gridded predictions -----------------------------------------------------
-V0_pred <- predict(grids, V0.rr)
-V3_pred <- predict(grids, V3.rr)
-V4_pred <- predict(grids, V4.rr)
-V5_pred <- predict(grids, V5.rr)
-V6_pred <- predict(grids, V6.rr)
+V0_rr <- predict(grids, V0.rr)
+V3_rr <- predict(grids, V3.rr)
+V4_rr <- predict(grids, V4.rr)
+V5_rr <- predict(grids, V5.rr)
+V6_rr <- predict(grids, V6.rr)
+rr_pred <- stack(V0_rr,V3_rr,V4_rr,V5_rr,V6_rr)
+names(rr_pred) <- c("V0_rr","V3_rr","V4_rr","V5_rr","V6_rr")
+plot(rr_pred)
 
 # Export Gtif's -----------------------------------------------------------
-rr_pred <- stack(V0_pred,V3_pred,V4_pred,V5_pred,V6_pred)
-names(rr_pred) <- c("V0_rr","V3_rr","V4_rr","V5_rr","V6_rr")
-writeRaster(rr.pred, filename="rr_pred.tif", datatype="FLT4S", options="INTERLEAVE=BAND", overwrite=T)
-
+writeRaster(rr_pred, filename="rr_pred.tif", datatype="FLT4S", options="INTERLEAVE=BAND", overwrite=T)
