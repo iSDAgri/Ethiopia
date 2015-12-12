@@ -3,9 +3,10 @@
 #' M. Walsh, December 2015
 
 # Required packages
-# install.packages(c("devtools","caret","glmnet","raster")), dependencies=TRUE)
+# install.packages(c("devtools","caret","doParallel","glmnet","raster")), dependencies=TRUE)
 require(devtools)
 require(caret)
+require(doParallel)
 require(glmnet)
 require(raster)
 
@@ -25,9 +26,12 @@ GRIDSc <- etm3_cal[c(18:45)] ## gridded covariates for model calibration from 20
 GRIDSv <- etm3_val[c(18:45)] ## same for 51 randomly selected validation Woredas
 
 # GLMNET models -----------------------------------------------------------
-set.seed(1385321)
+# Start foreach to parallelize model fitting
+mc <- makeCluster(detectCores())
+registerDoParallel(mc)
 
-# Cross-validation setup
+# Control setup
+set.seed(1385321)
 tc <- trainControl(method = "cv", number=10)
 
 # V0 = ilr [P,K,S,Ca,Mg | Fv]
@@ -60,6 +64,8 @@ print(V6.rr)
 v6.imp <- varImp(V6.rr)
 plot(v6.imp, top=28)
 
+stopCluster(mc)
+
 # Test set predictions ----------------------------------------------------
 V0_rr <- predict(V0.rr, GRIDSv)
 V3_rr <- predict(V3.rr, GRIDSv)
@@ -81,4 +87,8 @@ names(rr_pred) <- c("V0_rr","V3_rr","V4_rr","V5_rr","V6_rr")
 plot(rr_pred)
 
 # Export Gtif's -----------------------------------------------------------
-writeRaster(rr_pred, filename="rr_pred.tif", datatype="FLT4S", options="INTERLEAVE=BAND", overwrite=T)
+# Create a "Results" folder in current working directory
+dir.create("ETM3_results", showWarnings=F)
+
+# Export Gtif's to "./ETM3_results"
+writeRaster(rr_pred, filename="./ETM3_results/rr_preds.tif", datatype="FLT4S", options="INTERLEAVE=BAND", overwrite=T)
