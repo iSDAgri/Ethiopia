@@ -117,4 +117,8 @@ names(gbm_pred) <- c("V0_gbm","V3_gbm","V4_gbm","V5_gbm","V6_gbm")
 plot(gbm_pred)
 
 # Export Gtif's -----------------------------------------------------------
-writeRaster(gbm_pred, filename="gbm_pred.tif", datatype="FLT4S", options="INTERLEAVE=BAND", overwrite=T)
+# Create a "Results" folder in current working directory
+dir.create("ETM3_results", showWarnings=F)
+
+# Export Gtif's to "./ETM3_results"
+writeRaster(rf_pred, filename="./ETM3_results/gbm_preds.tif", datatype="FLT4S", options="INTERLEAVE=BAND", overwrite=T)
