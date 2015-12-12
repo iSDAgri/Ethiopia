@@ -33,25 +33,35 @@ tc <- trainControl(method = "oob")
 # V0 = ilr [P,K,S,Ca,Mg | Fv]
 V0.rf <- train(GRIDSc, V0, method = "rf", trControl = tc)
 print(V0.rf)
+v0.imp <- varImp(V0.rf, useModel = FALSE)
+plot(v0.imp, top=28)
 
 # V3 = ilr [P,K | K,Ca,Mg]
 V3.rf <- train(GRIDSc, V3, method = "rf", trControl = tc)
 print(V3.rf) 
+v3.imp <- varImp(V3.rf, useModel = FALSE)
+plot(v3.imp, top=28)
 
 # V4 = ilr [K | Ca,Mg]
 V4.rf <- train(GRIDSc, V4, method = "rf", trControl = tc)
 print(V4.rf)
+v4.imp <- varImp(V4.rf, useModel = FALSE)
+plot(v4.imp, top=28)
 
 # V5 = ilr [P | S]
 V5.rf <- train(GRIDSc, V5, method = "rf", trControl = tc)
 print(V5.rf)
+v5.imp <- varImp(V5.rf, useModel = FALSE)
+plot(v5.imp, top=28)
 
 # V6 = ilr [Ca | Mg]
 V6.rf <- train(GRIDSc, V6, method = "rf", trControl = tc)
 print(V6.rf)
+v6.imp <- varImp(V6.rf, useModel = FALSE)
+plot(v6.imp, top=28)
 
 # Test set predictions ----------------------------------------------------
-V0_rf <- predict(V1.rf, GRIDSv)
+V0_rf <- predict(V0.rf, GRIDSv)
 V3_rf <- predict(V3.rf, GRIDSv)
 V4_rf <- predict(V4.rf, GRIDSv)
 V5_rf <- predict(V5.rf, GRIDSv)
