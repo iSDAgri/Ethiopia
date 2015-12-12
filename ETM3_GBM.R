@@ -3,9 +3,10 @@
 #' M. Walsh, December 2015
 
 # Required packages
-# install.packages(c("devtools","caret","plyr","gbm")), dependencies=TRUE)
+# install.packages(c("devtools","caret","doParallel","plyr","gbm")), dependencies=TRUE)
 require(devtools)
 require(caret)
+require(doParallel)
 require(plyr)
 require(gbm)
 require(raster)
@@ -26,9 +27,12 @@ GRIDSc <- etm3_cal[c(18:45)] ## gridded covariates for model calibration from 20
 GRIDSv <- etm3_val[c(18:45)] ## same for 51 randomly selected validation Woredas
 
 # GBM models --------------------------------------------------------------
-set.seed(1385321)
+# Start foreach to paralellize model fitting
+mc <- makeCluster(detectCores())
+registerDoParallel(mc)
 
-# Cross-validation setup
+# Control setup
+set.seed(1385321)
 tc <- trainControl(method = "cv", number=10)
 
 # V0 = ilr [P,K,S,Ca,Mg | Fv]
@@ -95,6 +99,8 @@ V6.gbm <- train(GRIDSc, V6,
 print(V6.gbm)
 v6.imp <- varImp(V6.gbm)
 plot(v6.imp, top=28)
+
+stopCluster(mc)
 
 # Test set predictions ----------------------------------------------------
 V0_gbm <- predict(V0.gbm, GRIDSv)
