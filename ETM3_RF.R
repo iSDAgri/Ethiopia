@@ -81,4 +81,8 @@ names(rf_pred) <- c("V0_rf","V3_rf","V4_rf","V5_rf","V6_rf")
 plot(rf_pred)
 
 # Export Gtif's -----------------------------------------------------------
-writeRaster(rf_pred, filename="rf_pred.tif", datatype="FLT4S", options="INTERLEAVE=BAND", overwrite=T)
+# Create a "Results" folder in current working directory
+dir.create("ETM3_results", showWarnings=F)
+
+# Export Gtif's to "./ETM3_results"
+writeRaster(rf_pred, filename="./ETM3_results/rf_preds.tif", datatype="FLT4S", options="INTERLEAVE=BAND", overwrite=T)
