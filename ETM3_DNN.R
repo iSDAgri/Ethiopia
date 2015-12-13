@@ -25,7 +25,7 @@ V6 <- etm3_cal$V6
 GRIDSc <- etm3_cal[c(18:45)] ## gridded covariates for model calibration from 204 Woredas
 GRIDSv <- etm3_val[c(18:45)] ## same for 51 randomly selected validation Woredas
 
-# Random Forest models ----------------------------------------------------
+# Deep neural net models --------------------------------------------------
 # Start foreach to parallelize model fitting
 mc <- makeCluster(detectCores())
 registerDoParallel(mc)
