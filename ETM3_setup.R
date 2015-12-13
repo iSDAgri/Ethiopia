@@ -33,7 +33,7 @@ fpart <- c("P","K","S","Ca","Mg") ## all values in mg/kg
 etnb$Fv <- 1000000-rowSums(etnb[fpart]) ## calculates "fill value" (Fv), in mg/kg soil
 cpart <- c("P","K","S","Ca","Mg","Fv")
 
-# Sequential binary partion & integrated log ratio (ilr) transform
+# Sequential binary partion & isometric log ratio (ilr) transform
 cdata <- acomp(etnb[cpart])
 bpart <- t(matrix(c( 1, 1, 1, 1, 1,-1,
                      1,-1, 1,-1,-1, 0,
