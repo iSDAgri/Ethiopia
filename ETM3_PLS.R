@@ -1,4 +1,4 @@
-#' PLS predictions of nutrient mass balance variables with spatial covariates
+#' PLS regression predictions of nutrient mass balance variables with spatial covariates
 #' EthioSIS Mehlich-3 extractable P,K,S,Ca & Mg, from 255 Woredas
 #' M. Walsh, December 2015
 
