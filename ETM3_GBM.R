@@ -127,4 +127,4 @@ plot(gbm_pred)
 dir.create("ETM3_results", showWarnings=F)
 
 # Export Gtif's to "./ETM3_results"
-writeRaster(rf_pred, filename="./ETM3_results/gbm_preds.tif", datatype="FLT4S", options="INTERLEAVE=BAND", overwrite=T)
+writeRaster(gbm_pred, filename="./ETM3_results/gbm_preds.tif", datatype="FLT4S", options="INTERLEAVE=BAND", overwrite=T)
