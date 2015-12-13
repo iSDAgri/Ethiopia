@@ -1,4 +1,4 @@
-#' Generalized boosted regression predictions of nutrient mass balances with spatial covariates
+#' Boosted regression predictions of nutrient mass balances with spatial covariates
 #' EthioSIS Mehlich-3 extractable P,K,S,Ca & Mg data from 255 Woredas
 #' M. Walsh, December 2015
 
