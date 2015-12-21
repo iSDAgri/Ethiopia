@@ -11,7 +11,7 @@ require(glmnet)
 require(raster)
 
 # Data setup --------------------------------------------------------------
-# Run this first!
+# Look at & run this first!
 # SourceURL <- "https://raw.githubusercontent.com/mgwalsh/Ethiopia/blob/master/ETM3_ensemble_setup.R"
 # source_url(SourceURL)
 
