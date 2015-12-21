@@ -47,7 +47,7 @@ plot(v4.imp, top=4)
 
 # V5 = ilr [P | S]
 V5.ens <- train(V5 ~ V5_bart+V5_dnn+V5_gbm+V5_rf, data = etm3_cal,
-                  method = "glmnet", preProc = c("center", "scale"), trControl = tc)
+                method = "glmnet", preProc = c("center", "scale"), trControl = tc)
 print(V5.ens)
 v5.imp <- varImp(V5.ens)
 plot(v5.imp, top=4)
