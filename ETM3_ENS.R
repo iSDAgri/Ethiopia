@@ -1,5 +1,6 @@
 #' Regularized regression ensembles of nutrient mass balances with spatial predictions
 #' EthioSIS Mehlich-3 extractable P,K,S,Ca & Mg data from 255 Woredas
+#' Spatial predictions derived from BART, DNN, GBM & RF models w spatial covariates
 #' M. Walsh & J. Chen, December 2015
 
 # Required packages
