@@ -64,11 +64,11 @@ plot(v6.imp, top=4)
 stopCluster(mc)
 
 # Test set predictions ----------------------------------------------------
-V0_ens <- predict(V0.ens, GRIDSv)
-V3_ens <- predict(V3.ens, GRIDSv)
-V4_ens <- predict(V4.ens, GRIDSv)
-V5_ens <- predict(V5.ens, GRIDSv)
-V6_ens <- predict(V6.ens, GRIDSv)
+V0_ens <- predict(V0.ens, etm3_val)
+V3_ens <- predict(V3.ens, etm3_val)
+V4_ens <- predict(V4.ens, etm3_val)
+V5_ens <- predict(V5.ens, etm3_val)
+V6_ens <- predict(V6.ens, etm3_val)
 pred <- cbind.data.frame(V0_ens,V3_ens,V4_ens,V5_ens,V6_ens)
 test <- etm3_val[c("PID","V0","V3","V4","V5","V6")]
 ens_eval <- cbind(test, pred)
