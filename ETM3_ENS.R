@@ -23,7 +23,7 @@ registerDoParallel(mc)
 
 # Control setup
 set.seed(1385321)
-tc <- trainControl(method = "cv", number=10)
+tc <- trainControl(method = "repeatedcv", number=10, repeats=3)
 
 # V0 = ilr [P,K,S,Ca,Mg | Fv]
 V0.ens <- train(V0 ~ V0_bart+V0_dnn+V0_gbm+V0_rf, data = etm3_cal,
