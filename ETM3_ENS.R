@@ -70,7 +70,7 @@ V4_fit <- predict(V4.ens, etm3)
 V5_fit <- predict(V5.ens, etm3)
 V6_fit <- predict(V6.ens, etm3)
 fit <- cbind.data.frame(V0_fit,V3_fit,V4_fit,V5_fit,V6_fit)
-obs <- etm3[c("Woreda","PID","P","K","S","V0","V3","V4","V5","V6")]
+obs <- etm3[c("Woreda","PID","P","K","S","Ca","Mg","V0","V3","V4","V5","V6")]
 ens_fit <- cbind(obs, fit)
 
 # Gridded ensemble predictions --------------------------------------------
