@@ -63,15 +63,15 @@ plot(v6.imp, top=4)
 # Stop parallelize
 stopCluster(mc)
 
-# Test set predictions ----------------------------------------------------
-V0_ens <- predict(V0.ens, etm3_val)
-V3_ens <- predict(V3.ens, etm3_val)
-V4_ens <- predict(V4.ens, etm3_val)
-V5_ens <- predict(V5.ens, etm3_val)
-V6_ens <- predict(V6.ens, etm3_val)
-pred <- cbind.data.frame(V0_ens,V3_ens,V4_ens,V5_ens,V6_ens)
-test <- etm3_val[c("PID","V0","V3","V4","V5","V6")]
-ens_eval <- cbind(test, pred)
+# Model fits --------------------------------------------------------------
+V0_fit <- predict(V0.ens, etm3)
+V3_fit <- predict(V3.ens, etm3)
+V4_fit <- predict(V4.ens, etm3)
+V5_fit <- predict(V5.ens, etm3)
+V6_fit <- predict(V6.ens, etm3)
+fit <- cbind.data.frame(V0_fit,V3_fit,V4_fit,V5_fit,V6_fit)
+obs <- etm3[c("PID","V0","V3","V4","V5","V6")]
+ens_eval <- cbind(obs, fit)
 
 # Gridded ensemble predictions --------------------------------------------
 V0_ens <- predict(grids, V0.ens)
