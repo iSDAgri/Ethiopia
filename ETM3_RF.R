@@ -32,7 +32,7 @@ registerDoParallel(mc)
 
 # Control setup
 set.seed(1385321)
-tc <- trainControl(method = "oob")
+tc <- trainControl(method = "oob", allowParallel = TRUE)
 
 # V0 = ilr [P,K,S,Ca,Mg | Fv]
 V0.rf <- train(GRIDSc, V0, method = "rf", preProc = c("center", "scale"), trControl = tc)
