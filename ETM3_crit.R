@@ -1,4 +1,4 @@
-#' Ensemble predictions of potentially P,K and/or S deficient soils
+#' Predictions of potentially P,K and/or S deficient soils
 #' EthioSIS Mehlich-3 extractable P,K & S measurements from 255 Woredas
 #' M. Walsh, December 2015
 
@@ -110,4 +110,4 @@ plot(crit_pred)
 dir.create("ETM3_results", showWarnings=F)
 
 # Export Gtif's to "./ETM3_results"
-writeRaster(crit_ens, filename="./ETM3_results/crit_preds.tif", datatype="FLT4S", options="INTERLEAVE=BAND", overwrite=T)
+writeRaster(crit_pred, filename="./ETM3_results/crit_pred.tif", datatype="FLT4S", options="INTERLEAVE=BAND", overwrite=T)
