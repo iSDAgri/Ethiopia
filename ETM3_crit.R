@@ -1,5 +1,5 @@
 #' Ensemble predictions of potentially P,K and/or S deficient soils
-#' EthioSIS Mehlich-3 extractable P from 255 Woredas
+#' EthioSIS Mehlich-3 extractable P,K & S measurements from 255 Woredas
 #' M. Walsh, December 2015
 
 # Required packages
