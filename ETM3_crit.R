@@ -98,9 +98,12 @@ K_prob <- predict(grids, K.glm, type = 'prob')
 K_mask <- 1-K_prob > K_thld
 S_prob <- predict(grids, S.glm, type = 'prob')
 S_mask <- 1-S_prob > S_thld
-crit_pred <- stack(1-P_prob, 1-K_prob, 1-S_prob, P_mask, K_mask, S_mask)
-names(crit_pred) <- c("P_prob","K_prob","S_prob","P_mask","K_mask","S_mask")
+crit_pred <- stack(1-P_prob, 1-K_prob, 1-S_prob)
+crit_mask <- stack(P_mask, K_mask, S_mask)
+names(crit_pred) <- c("P_prob","K_prob","S_prob")
+names(crit_mask) <- c("P_mask","K_mask","S_mask")
 plot(crit_pred, legend = F, axes = F)
+plot(crit_mask, legend = F, axes = F)
 
 # Export Gtif's -----------------------------------------------------------
 # Create a "Results" folder in current working directory
@@ -108,3 +111,4 @@ dir.create("ETM3_results", showWarnings=F)
 
 # Export Gtif's to "./ETM3_results"
 writeRaster(crit_pred, filename="./ETM3_results/crit_pred.tif", datatype="FLT4S", options="INTERLEAVE=BAND", overwrite=T)
+writeRaster(crit_mask, filename="./ETM3_results/crit_mask.tif", datatype="INT1U", options="INTERLEAVE=BAND", overwrite=T)
