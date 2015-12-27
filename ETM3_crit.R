@@ -65,7 +65,7 @@ stopCluster(mc)
 
 # Model validation --------------------------------------------------------
 # P-test
-P_pred <- predict(P.glm, GRIDSv, type = "prob")
+P_pred <- predict(P.glm, GRIDSv, type = 'prob')
 P_test <- cbind(Pval, P_pred)
 P_tpos <- subset(P_test, Pval=="Y", select=c(Y))
 P_tneg <- subset(P_test, Pval=="N", select=c(Y))
@@ -75,7 +75,7 @@ P_thld <- threshold(P_eval, 'spec_sens') ## TPR+TNR threshold for classification
 P_thld
 
 # K-test
-K_pred <- predict(K.glm, GRIDSv, type = "prob")
+K_pred <- predict(K.glm, GRIDSv, type = 'prob')
 K_test <- cbind(Kval, K_pred)
 K_tpos <- subset(K_test, Kval=="Y", select=c(Y))
 K_tneg <- subset(K_test, Kval=="N", select=c(Y))
@@ -85,7 +85,7 @@ K_thld <- threshold(K_eval, 'spec_sens') ## TPR+TNR threshold for classification
 K_thld
 
 # S-test
-S_pred <- predict(S.glm, GRIDSv, type = "prob")
+S_pred <- predict(S.glm, GRIDSv, type = 'prob')
 S_test <- cbind(Sval, S_pred)
 S_tpos <- subset(S_test, Sval=="Y", select=c(Y))
 S_tneg <- subset(S_test, Sval=="N", select=c(Y))
@@ -95,12 +95,15 @@ S_thld <- threshold(S_eval, 'spec_sens') ## TPR+TNR threshold for classification
 S_thld
 
 # Spatial predictions -----------------------------------------------------
-P_ens <- predict(grids, P.glm, type = 'prob')
-K_ens <- predict(grids, K.glm, type = 'prob')
-S_ens <- predict(grids, S.glm, type = 'prob')
-crit_ens <- stack(1-P_ens, 1-K_ens, 1-S_ens)
-names(crit_ens) <- c("P_test","K_test","S_test")
-plot(crit_ens)
+P_prob <- predict(grids, P.glm, type = 'prob')
+P_mask <- 1-P_prob > P_thld
+K_prob <- predict(grids, K.glm, type = 'prob')
+K_mask <- 1-K_prob > K_thld
+S_prob <- predict(grids, S.glm, type = 'prob')
+S_mask <- 1-S_prob > S_thld
+crit_pred <- stack(1-P_prob, 1-K_prob, 1-S_prob, P_mask, K_mask, S_mask)
+names(crit_pred) <- c("P_prob","K_prob","S_prob","P_mask","K_mask","S_mask")
+plot(crit_pred)
 
 # Export Gtif's -----------------------------------------------------------
 # Create a "Results" folder in current working directory
