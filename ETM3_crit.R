@@ -72,7 +72,6 @@ P_tneg <- subset(P_test, Pval=="N", select=c(Y))
 P_eval <- evaluate(p=P_tpos[,1], a=P_tneg[,1]) ## calculate ROC's on test set <dismo>
 plot(P_eval, 'ROC') ## plot ROC curve
 P_thld <- threshold(P_eval, 'spec_sens') ## TPR+TNR threshold for classification
-P_thld
 
 # K-test
 K_pred <- predict(K.glm, GRIDSv, type = 'prob')
@@ -82,7 +81,6 @@ K_tneg <- subset(K_test, Kval=="N", select=c(Y))
 K_eval <- evaluate(p=K_tpos[,1], a=K_tneg[,1]) ## calculate ROC's on test set <dismo>
 plot(K_eval, 'ROC') ## plot ROC curve
 K_thld <- threshold(K_eval, 'spec_sens') ## TPR+TNR threshold for classification
-K_thld
 
 # S-test
 S_pred <- predict(S.glm, GRIDSv, type = 'prob')
@@ -92,7 +90,6 @@ S_tneg <- subset(S_test, Sval=="N", select=c(Y))
 S_eval <- evaluate(p=S_tpos[,1], a=S_tneg[,1]) ## calculate ROC's on test set <dismo>
 plot(S_eval, 'ROC') ## plot ROC curve
 S_thld <- threshold(S_eval, 'spec_sens') ## TPR+TNR threshold for classification
-S_thld
 
 # Spatial predictions -----------------------------------------------------
 P_prob <- predict(grids, P.glm, type = 'prob')
