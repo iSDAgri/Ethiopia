@@ -103,7 +103,7 @@ S_prob <- predict(grids, S.glm, type = 'prob')
 S_mask <- 1-S_prob > S_thld
 crit_pred <- stack(1-P_prob, 1-K_prob, 1-S_prob, P_mask, K_mask, S_mask)
 names(crit_pred) <- c("P_prob","K_prob","S_prob","P_mask","K_mask","S_mask")
-plot(crit_pred)
+plot(crit_pred, legend = F, axes = F)
 
 # Export Gtif's -----------------------------------------------------------
 # Create a "Results" folder in current working directory
